@@ -43,6 +43,8 @@ public class PostController {
         updatePostUseCase.updatePost(request);
         return ResponseEntity.noContent().build();
     }
+    @IsAuthenticated
+    @RolesAllowed({"USER"})
     @DeleteMapping("{id}")
     public ResponseEntity<Void> deletePost(@PathVariable long id) {
         deletePostUseCase.deletePost(id);
