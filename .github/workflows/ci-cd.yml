@@ -105,9 +105,10 @@ jobs:
           SPRING_DATA_MONGODB_URI: ${{ secrets.MONGODB_URI }}
         run: echo "MongoDB URI set"
 
-      - name: Run SonarQube Analysis
+      - name: sonar scan
+        run: ./gradlew sonar
         env:
+          SPRING_DATA_MONGODB_URI: ${{ secrets.MONGODB_URI }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        run: ./gradlew sonar
             
