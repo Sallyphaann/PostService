@@ -104,8 +104,8 @@ jobs:
         env:
           SPRING_DATA_MONGODB_URI: ${{ secrets.MONGODB_URI }}
         run: echo "MongoDB URI set"
-      - name: Run SonarQube Analysis with Hardcoded Credentials
-        run: ./gradlew clean build sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=sqa_cf9e61cc7c61cdea5dee7423af042d45d8cd5bca
+      - name: Test SonarQube Connectivity
+        run: curl http://localhost:9000
       # - name: sonar scan
       #   run: ./gradlew clean build sonar --info \
       #   env:
