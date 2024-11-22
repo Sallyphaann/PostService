@@ -45,14 +45,8 @@ jobs:
         run: ./gradlew sonar --no-daemon
         env:
           SONAR_TOKEN: 'sqa_cf9e61cc7c61cdea5dee7423af042d45d8cd5bca' 
-          SONAR_HOST_URL: 'http://localhost:9000'
-      - name: Run SonarQube scan
-        run: |
-          sonar-scanner \
-            -Dsonar.projectKey=PostService \
-            -Dsonar.host.url=http://localhost:9000 \
-            -Dsonar.login=sqa_cf9e61cc7c61cdea5dee7423af042d45d8cd5bca
-
+          SONAR_HOST_URL: 'https://long-cobras-wonder.loca.lt/'
+     
   test:
     runs-on: ubuntu-latest
     needs: build
