@@ -106,7 +106,7 @@ jobs:
         run: echo "MongoDB URI set"
 
       - name: sonar scan
-        run: ./gradlew sonar
+        run: ./gradlew clean build sonar --info \
         env:
           SPRING_DATA_MONGODB_URI: ${{ secrets.MONGODB_URI }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
