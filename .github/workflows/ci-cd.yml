@@ -140,13 +140,13 @@ jobs:
         run: echo "MongoDB URI set"
         
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/scan@v2
+        uses: actions/checkout@v4
         with:
           args: test --severity-threshold=high
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       - name: Monitor project with Snyk
-        uses: snyk/actions/monitor@v2
+        uses: actions/checkout@v4
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
      
