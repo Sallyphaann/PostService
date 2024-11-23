@@ -112,7 +112,7 @@ jobs:
         run: ./gradlew build sonar
   security:
     runs-on: ubuntu-latest
-    needs: sonar
+
     steps:
       # Step 1: Checkout repository
       - name: Checkout repository
@@ -146,12 +146,12 @@ jobs:
         env:
           SPRING_DATA_MONGODB_URI: ${{ secrets.MONGODB_URI }}
         run: echo "MongoDB URI set"
-
-      # Step 6: Run Snyk to check for vulnerabilities
+      - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/gradle-jdk17@master  # Use the correct action for Gradle with JDK 17
+        uses: snyk/actions/gradle-jdk17@master
         env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}  # Store your Snyk token securely in GitHub Secrets
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
       
  
   # snyk:
