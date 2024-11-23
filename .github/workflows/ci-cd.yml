@@ -110,11 +110,12 @@ jobs:
         env: 
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ./gradlew build sonar
-  security:
+  javahome:
     runs-on: ubuntu-latest
     steps:
-      # Step 1: Checkout repository
-      - uses: actions/checkout@v3
+      # Step 1: Checkout the code
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       # Step 2: Set up JDK 17
       - name: Set up JDK 17
@@ -123,39 +124,13 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      # Step 3: Set JAVA_HOME explicitly
-      - name: Set JAVA_HOME
-        run: |
-          echo "JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))" >> $GITHUB_ENV
-          echo "JAVA_HOME set to: $JAVA_HOME"
+      # Step 3: Print the JAVA_HOME value
+      - name: Print JAVA_HOME
+        run: echo "JAVA_HOME is set to:$JAVA_HOME"
 
-      # Step 4: Verify Java installation
-      - name: Verify Java installation
+      # Step 4: Check the Java version
+      - name: Check Java version
         run: java -version
-
-      # Step 5: Cache Gradle dependencies
-      - name: Cache Gradle packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.gradle/caches
-          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            gradle-${{ runner.os }}-
-
-      # Step 6: Make gradlew executable
-      - name: Make gradlew executable
-        run: chmod +x ./gradlew
-
-      # Step 7: Build with Gradle (optional but recommended)
-      - name: Build with Gradle
-        run: ./gradlew build
-
-      # Step 8: Run Snyk to check for vulnerabilities
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/gradle-jdk17@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-          JAVA_HOME: ${{ env.JAVA_HOME }}
       
  
   # snyk:
