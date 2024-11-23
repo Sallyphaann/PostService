@@ -41,11 +41,7 @@ jobs:
         run: ./gradlew build
         env:
           SPRING_DATA_MONGODB_URI: ${{ secrets.MONGODB_URI }}
-      - name: Sonar Analysis
-        run: ./gradlew sonar --no-daemon
-        env:
-          SONAR_TOKEN: 'sqa_cf9e61cc7c61cdea5dee7423af042d45d8cd5bca' 
-          SONAR_HOST_URL: 'https://long-cobras-wonder.loca.lt/'
+      
      
   test:
     runs-on: ubuntu-latest
