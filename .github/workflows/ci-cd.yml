@@ -138,19 +138,25 @@ jobs:
         env:
           SPRING_DATA_MONGODB_URI: ${{ secrets.MONGODB_URI }}
         run: echo "MongoDB URI set"
-     
-      - name: Run Snyk to check for vulnerabilities
-        uses: actions/checkout@v4
+      - name: Run Snyk test
+        uses: snyk/actions/gradle-jdk17@master
         with:
-          args: test --severity-threshold=high
-          command: test
+            command: 'test'
+            args: '--all'
         env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      - name: Monitor project with Snyk
-        uses: actions/checkout@v4
-        with:
-          command: monitor
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      # - name: Run Snyk to check for vulnerabilities
+      #   uses: actions/checkout@v4
+      #   with:
+      #     args: test --severity-threshold=high
+      #     command: test
+      #   env:
+      #     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      # - name: Monitor project with Snyk
+      #   uses: actions/checkout@v4
+      #   with:
+      #     command: monitor
+      #   env:
+      #     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
      
             
