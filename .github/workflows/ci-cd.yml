@@ -145,10 +145,6 @@ jobs:
           args: test --severity-threshold=high
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      - name: Snyk Test
-        run: snyk test
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       - name: Monitor project with Snyk
         uses: actions/checkout@v4
         env:
