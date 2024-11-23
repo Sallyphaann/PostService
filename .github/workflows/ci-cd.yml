@@ -41,6 +41,11 @@ jobs:
         run: ./gradlew build
         env:
           SPRING_DATA_MONGODB_URI: ${{ secrets.MONGODB_URI }}
+      - name: SonarCloud Scan
+        env: 
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: ./gradlew build sonar --info
+         
       
      
   test:
