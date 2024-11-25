@@ -134,18 +134,31 @@ jobs:
             gradle-${{ runner.os }}-
 
       - name: Make gradlew executable
-        run: chmod +x ./gradlew
-      
+        run: chmod +x ./gradlew   
+      # Step 4: Build the project with Gradle
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      # Step 5: Run tests with Gradle
+      - name: Run Tests
+        run: ./gradlew test
+
+      # Step 6: Install Snyk CLI via npm
       - name: Install Snyk CLI via npm
         run: npm install -g snyk
+
+      # Step 7: Authenticate Snyk
       - name: Authenticate Snyk
         run: snyk auth ${{ secrets.SNYK_TOKEN }}
 
-      - name: Snyk Vulnerability Scan
+      # Step 8: Run Snyk test for vulnerabilities
+      - name: Snyk Vulnerability Test
         run: snyk test 
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      - name: Monitor project with Snyk
+
+      # Step 9: Snyk Monitor to continuously track dependencies
+      - name: Snyk Monitor for Continuous Tracking
         run: snyk monitor
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
