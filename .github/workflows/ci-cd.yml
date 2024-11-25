@@ -187,6 +187,6 @@ jobs:
              password: ${{ secrets.REGISTRY_PASSWORD }}
       - name: Push Docker image
         run: |
-            docker push -t sallyphaan/postservice:latest
+            docker push sallyphaan/postservice:latest
              
             
