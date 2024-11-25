@@ -178,13 +178,14 @@ jobs:
 
       - name: Make gradlew executable
         run: chmod +x ./gradlew   
-      - name: Build Docker image
-        run: docker build -t sallyphaan/postservice:latest .
+
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
              username: ${{ secrets.REGISTRY_USERNAME }}
              password: ${{ secrets.REGISTRY_PASSWORD }}
+      - name: Build Docker image
+        run: docker build -t sallyphaan/postservice:latest .
       - name: Push Docker image
         run: |
             docker push sallyphaan/postservice:latest
