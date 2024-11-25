@@ -179,7 +179,7 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew   
       - name: Build Docker image
-        run: docker build -t sallyphaan/postservice:latest
+        run: docker build -t sallyphaan/postservice:latest .
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
