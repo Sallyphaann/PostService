@@ -140,7 +140,9 @@ jobs:
         env:
           SPRING_DATA_MONGODB_URI: ${{ secrets.MONGODB_URI }}
         run: echo "MongoDB URI set"
-      
+      - name: Install Snyk
+        run: npm install -g snyk
+
       - name: Run Snyk to check for vulnerabilities
         uses: actions/checkout@v2
         with:
