@@ -140,15 +140,35 @@ jobs:
         env:
           SPRING_DATA_MONGODB_URI: ${{ secrets.MONGODB_URI }}
         run: echo "MongoDB URI set"
-      - name: Install Snyk
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      # Step 5: Run tests with Gradle
+      - name: Run Tests
+        run: ./gradlew test
+
+      # Step 6: Install Snyk CLI using Gradle (Optional if using Snyk CLI directly)
+      - name: Install Snyk CLI via npm
         run: npm install -g snyk
 
-      - name: Run Snyk to check for vulnerabilities
-        uses: actions/checkout@v2
-        with:
-         args: test 
+      # Step 7: Authenticate Snyk
+      - name: Authenticate Snyk
+        run: snyk auth ${{ secrets.SNYK_TOKEN }}
+
+      # Step 8: Run Snyk test for vulnerabilities
+      - name: Snyk Vulnerability Scan
+        run: snyk test --severity-threshold=high
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      # - name: Install Snyk
+      #   run: npm install -g snyk
+
+      # - name: Run Snyk to check for vulnerabilities
+      #   uses: actions/checkout@v2
+      #   with:
+      #    args: test 
+      #   env:
+      #     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       # - name: Monitor project with Snyk
       #   uses: actions/checkout@v4
       #   with:
