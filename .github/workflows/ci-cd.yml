@@ -144,7 +144,7 @@ jobs:
       - name: Run Snyk to check for vulnerabilities
         uses: actions/checkout@v2
         with:
-         args: test --severity-threshold=high
+         args: test 
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       # - name: Monitor project with Snyk
