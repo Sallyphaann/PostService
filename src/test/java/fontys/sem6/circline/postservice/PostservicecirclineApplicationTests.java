@@ -33,8 +33,6 @@ class PostservicecirclineApplicationTests {
 
 		HttpEntity<String> entity = new HttpEntity<>(loginRequestBody, headers);
 		ResponseEntity<String> response = restTemplate.exchange(authServiceUrl, HttpMethod.POST, entity, String.class);
-
-
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
 		String token = null;
 		try {
@@ -63,6 +61,7 @@ class PostservicecirclineApplicationTests {
 
 		HttpEntity<String> entity = new HttpEntity<>(loginRequestBody, headers);
 		ResponseEntity<String> response = restTemplate.exchange(authServiceUrl, HttpMethod.POST, entity, String.class);
+		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
 		String token = null;
 		try {
 			JSONObject jsonResponse = new JSONObject(response.getBody());
