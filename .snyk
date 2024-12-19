@@ -5,4 +5,20 @@ ignore:
   SNYK-JAVA-ORGSPRINGFRAMEWORK-8384234:
     - '*':
         reason: No direct upgrade or patch available. Monitoring for future fixes.
+  SNYK-JAVA-COMFASTERXMLWOODSTOX-3091135:
+      - '*':
+          reason: Vulnerability in transitive dependency com.fasterxml.woodstox:woodstox-core. Ignoring due to no direct fix available yet.
+          expires: 2025-01-01
+  SNYK-JAVA-COMTHOUGHTWORKSXSTREAM-8352924:
+      - '*':
+          reason: Vulnerability in transitive dependency com.thoughtworks.xstream:xstream. Ignoring due to no direct fix available yet.
+          expires: 2025-01-01
+  SNYK-JAVA-ORGAPACHEHTTPCOMPONENTS-1048058:
+      - '*':
+          reason: Vulnerability in transitive dependency org.apache.httpcomponents:httpclient. Ignoring for now, awaiting fixes from upstream.
+          expires: 2025-01-01
+  SNYK-JAVA-ORGAPACHETOMCATEMBED-8523186:
+      - '*':
+          reason: Vulnerability in org.apache.tomcat.embed:tomcat-embed-core. Ignoring until an appropriate version can be tested and applied.
+          expires: 2025-01-01
 patch: {}
