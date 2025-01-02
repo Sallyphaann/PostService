@@ -82,45 +82,45 @@ class PostservicecirclineApplicationTests {
 //
 //    }
 //
-//    @Test
-//    public void testAuthenticationServiceCreatePost() {
-//        String authServiceUrl = "http://localhost:9091/login";
-//        String loginRequestBody = "{\"email\": \"Sally@gmail.com\", \"password\": \"Abc@12\"}";
-//
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(MediaType.APPLICATION_JSON);
-//
-//        HttpEntity<String> entity = new HttpEntity<>(loginRequestBody, headers);
-//        ResponseEntity<String> response = restTemplate.exchange(authServiceUrl, HttpMethod.POST, entity, String.class);
-//        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
-//        String token = null;
-//        try {
-//            JSONObject jsonResponse = new JSONObject(response.getBody());
-//            token = jsonResponse.getString("accessToken");
-//        } catch (JSONException e) {
-//            System.err.println("Error parsing JSON response or accessing token: " + e.getMessage());
-//            fail("Error parsing JSON response: " + e.getMessage());
-//        }
-//
-//        String postServiceUrl = "http://localhost:9090/posts";
-//        String createPostRequestBody = "{\"content\": \"this is the test content\"}";
-//        HttpHeaders postHeaders = new HttpHeaders();
-//        postHeaders.set("Authorization", "Bearer " + token);
-//        postHeaders.setContentType(MediaType.APPLICATION_JSON);
-//        HttpEntity<String> createPostEntity = new HttpEntity<>(createPostRequestBody, postHeaders);
-//        ResponseEntity<String> response1 = restTemplate.exchange(postServiceUrl, HttpMethod.POST, createPostEntity, String.class);
-//        assertThat(response1.getStatusCode()).isEqualTo(HttpStatus.CREATED);
-//        String id = null;
-//        try {
-//            JSONObject jsonResponse = new JSONObject(response1.getBody());
-//            id = jsonResponse.getString("id");
-//        } catch (JSONException e) {
-//
-//            fail("Error parsing id response: " + e.getMessage());
-//        }
-//        assertThat(id).isNotNull();
-//
-//    }
+    @Test
+    public void testAuthenticationServiceCreatePost() {
+       String authServiceUrl = "http://localhost:9091/login";
+       String loginRequestBody = "{\"email\": \"Sally@gmail.com\", \"password\": \"Abc@12\"}";
+
+        HttpHeaders headers = new HttpHeaders();
+       headers.setContentType(MediaType.APPLICATION_JSON);
+
+       HttpEntity<String> entity = new HttpEntity<>(loginRequestBody, headers);
+        ResponseEntity<String> response = restTemplate.exchange(authServiceUrl, HttpMethod.POST, entity, String.class);
+       assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+        String token = null;
+        try {
+           JSONObject jsonResponse = new JSONObject(response.getBody());
+           token = jsonResponse.getString("accessToken");
+        } catch (JSONException e) {
+            System.err.println("Error parsing JSON response or accessing token: " + e.getMessage());
+            fail("Error parsing JSON response: " + e.getMessage());
+        }
+
+        String postServiceUrl = "http://localhost:9090/posts";
+        String createPostRequestBody = "{\"content\": \"this is the test content\"}";
+       HttpHeaders postHeaders = new HttpHeaders();
+        postHeaders.set("Authorization", "Bearer " + token);
+        postHeaders.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> createPostEntity = new HttpEntity<>(createPostRequestBody, postHeaders);
+        ResponseEntity<String> response1 = restTemplate.exchange(postServiceUrl, HttpMethod.POST, createPostEntity, String.class);
+        assertThat(response1.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+        String id = null;
+        try {
+            JSONObject jsonResponse = new JSONObject(response1.getBody());
+            id = jsonResponse.getString("id");
+        } catch (JSONException e) {
+
+            fail("Error parsing id response: " + e.getMessage());
+        }
+        assertThat(id).isNotNull();
+
+    }
 }
 
 
