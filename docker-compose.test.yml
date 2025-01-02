@@ -2,12 +2,17 @@ version: '3.8'
 
 services:
   eureka:
-    image: eureka:latest
+    image: springcloud/eureka
     container_name: eureka-container
     ports:
       - "8761:8761"
     networks:
       - test-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8761"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
 
   postservice:
     image: sallyphaan/postservice:latest
@@ -15,6 +20,7 @@ services:
       - "9090:8082"  # Exposing port 9090 for testing
     environment:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka
+      SPRING_DATA_MONGODB_URI: $SPRING_DATA_MONGODB_URI
     depends_on:
       eureka:
         condition: service_healthy
@@ -27,6 +33,7 @@ services:
       - "9091:8081"  # Exposing port 9091 for testing
     environment:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka
+      SPRING_DATA_MONGODB_URI: $SPRING_DATA_MONGODB_URI
     depends_on:
       eureka:
         condition: service_healthy
