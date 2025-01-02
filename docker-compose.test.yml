@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   eureka:
-    image: springcloud/eureka
+    image: sallyphaan/eureka:latest
     container_name: eureka-container
     ports:
       - "8761:8761"
