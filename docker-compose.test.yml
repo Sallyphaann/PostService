@@ -8,7 +8,7 @@ services:
       - "8761:8761"
     networks:
       - test-network
-    
+
 
   postservice:
     image: sallyphaan/postservice:latest
@@ -17,9 +17,6 @@ services:
     environment:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka
       SPRING_DATA_MONGODB_URI: $SPRING_DATA_MONGODB_URI
-    depends_on:
-      eureka:
-        condition: service_healthy
     networks:
       - test-network
 
@@ -30,9 +27,6 @@ services:
     environment:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka
       SPRING_DATA_MONGODB_URI: $SPRING_DATA_MONGODB_URI
-    depends_on:
-      eureka:
-        condition: service_healthy
     networks:
       - test-network
 
