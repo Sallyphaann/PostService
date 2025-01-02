@@ -116,6 +116,15 @@ jobs:
       - name: Pull Auth Service Image from Docker Hub
         run: |
           docker pull sallyphaan/authenticationcc:latest
+      - name: Set up Docker
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker.io
+          sudo apt-get install -y curl  # Ensure curl is available for the next step
+          sudo curl -L "https://github.com/docker/compose/releases/download/v2.17.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+          docker-compose --version  # Verify the installation
+
       - name: Build and run Docker Compose
         run: |
           docker-compose -f docker-compose.test.yml up --build --abort-on-container-exit
