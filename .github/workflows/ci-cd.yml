@@ -115,7 +115,7 @@ jobs:
 
       - name: Pull Auth Service Image from Docker Hub
         run: |
-          docker pull sallyphaan/authservice:latest
+          docker pull sallyphaan/authenticationcc:latest
 
       - name: Run Integration Tests
         run: |
