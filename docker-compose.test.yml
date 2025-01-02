@@ -8,11 +8,7 @@ services:
       - "8761:8761"
     networks:
       - test-network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8761"]
-      interval: 10s
-      timeout: 5s
-      retries: 10
+    
 
   postservice:
     image: sallyphaan/postservice:latest
