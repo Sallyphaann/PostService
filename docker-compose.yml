@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  postservice:
+    image: sallyphaan/postservice:latest
+    ports:
+      - "8082:8082" # Map the container port to host machine port
+    environment:
+      SPRING_PROFILES_ACTIVE: test
+      SPRING_DATASOURCE_URL: jdbc:h2:mem:testdb   # Keep the H2 configuration, but it won't be used
+      SPRING_DATASOURCE_DRIVER_CLASSNAME: org.h2.Driver
+      SPRING_DATASOURCE_USERNAME: sa
+      SPRING_DATASOURCE_PASSWORD: ""
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.H2Dialect
+      SPRING_JPA_HIBERNATE_DDL_AUTO: create-drop
