@@ -64,7 +64,7 @@ class PostservicecirclineApplicationTests {
         headers.set("Authorization", "Bearer " + userToken);
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<String> requestEntity = new HttpEntity<>(postJson, headers);
-        ResponseEntity<String> response = restTemplate.exchange("http://localhost:8082/posts", HttpMethod.POST, requestEntity, String.class);
+        ResponseEntity<String> response = restTemplate.exchange("http://localhost:9082/posts", HttpMethod.POST, requestEntity, String.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
     }
