@@ -42,9 +42,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 //@ActiveProfiles("test")
 //@Transactional
 //@AutoConfigureMockMvc
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
 class PostservicecirclineApplicationTests {
+    @LocalServerPort
+    private int port;
     private RestTemplate restTemplate;  // Manually instantiate RestTemplate
 
     private String adminToken;
@@ -64,7 +66,8 @@ class PostservicecirclineApplicationTests {
         headers.set("Authorization", "Bearer " + userToken);
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<String> requestEntity = new HttpEntity<>(postJson, headers);
-        ResponseEntity<String> response = restTemplate.exchange("http://localhost:9082/posts", HttpMethod.POST, requestEntity, String.class);
+        String url = "http://localhost:" + port + "/posts";
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
     }
