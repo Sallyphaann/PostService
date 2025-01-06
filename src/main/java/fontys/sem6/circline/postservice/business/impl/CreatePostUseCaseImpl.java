@@ -44,6 +44,7 @@ public class CreatePostUseCaseImpl implements CreatePostUseCase {
                 .dateTime(Instant.now())
                 .build();
         PostEntity savedPostEntity = postRepository.save(savedPost);
+
         return  CreatePostResponse.builder()
                 .id(savedPostEntity.getId())
                 .build();

@@ -22,5 +22,6 @@ public class DeletePostUseCaseImpl implements DeletePostUseCase {
             throw new UnauthorizedDataAccessException("USER_ID_NOT_FROM_LOGGED_IN_USER");
         }
         this.postRepository.deleteById(id);
+
     }
 }
