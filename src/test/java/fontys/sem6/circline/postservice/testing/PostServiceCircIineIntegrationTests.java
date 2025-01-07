@@ -3,6 +3,7 @@ package fontys.sem6.circline.postservice.testing;
 import fontys.sem6.circline.postservice.test.JwtTokenUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.*;
@@ -18,16 +19,17 @@ import static org.mockito.ArgumentMatchers.eq;
 class PostServiceCircIineIntegrationTests {
     @LocalServerPort
     private int port;
-    private RestTemplate restTemplate;  // Manually instantiate RestTemplate
-
+    private RestTemplate restTemplate;  
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
     private String adminToken;
     private String userToken;
 
     @BeforeEach
     public void setUp() {
         restTemplate = new RestTemplate();  // Initialize RestTemplate manually
-        adminToken = JwtTokenUtil.generateMockToken(1L, "Admin@gmail.com", "ADMIN");  // Use correct ID and email format
-        userToken = JwtTokenUtil.generateMockToken(2L, "User@gmail.com", "USER");    // Use consistent and meaningful data
+        adminToken = jwtTokenUtil.generateMockToken(1L, "Admin@gmail.com", "ADMIN");  // Use correct ID and email format
+        userToken = jwtTokenUtil.generateMockToken(2L, "User@gmail.com", "USER");    // Use consistent and meaningful data
     }
     @Test
     void testCreatePostAsUser() {
