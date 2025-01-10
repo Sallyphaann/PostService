@@ -13,29 +13,29 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    services:
-      eureka:
-        image: sallyphaan/eureka:latest
-        ports:
-          - 8761:8761
+    # services:
+    #   eureka:
+    #     image: sallyphaan/eureka:latest
+    #     ports:
+    #       - 8761:8761
         
-      postservice:
-        image: sallyphaan/postservice:latest
-        ports:
-          - 9090:8082
-        options: --link eureka
-      authservice:
-        image: sallyphaan/authenticationcc:latest
-        ports:
-          - 9091:8081
-        options: --link eureka
-      mysql-auth:
-        image: mysql:8.0
-        env:
-          MYSQL_ROOT_PASSWORD: Halan2021!
-          MYSQL_DATABASE: authenticationcc
-        ports:
-          - 3307:3306
+    #   postservice:
+    #     image: sallyphaan/postservice:latest
+    #     ports:
+    #       - 9090:8082
+    #     options: --link eureka
+    #   authservice:
+    #     image: sallyphaan/authenticationcc:latest
+    #     ports:
+    #       - 9091:8081
+    #     options: --link eureka
+    #   mysql-auth:
+    #     image: mysql:8.0
+    #     env:
+    #       MYSQL_ROOT_PASSWORD: Halan2021!
+    #       MYSQL_DATABASE: authenticationcc
+    #     ports:
+    #       - 3307:3306
     
     steps:
       
